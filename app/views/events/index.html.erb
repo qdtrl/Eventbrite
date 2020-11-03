@@ -1,37 +1,103 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Start date</th>
-      <th>Duration</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.start_date %></td>
-        <td><%= event.duration %></td>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.price %></td>
-        <td><%= event.location %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="mb-0 jumbotron jumbotron-fluid" style="height: 600px;">
+  <div class="container">
+    <br><br><br><br><br><br><br><br><br>
+    <h1 class="display-4">Welcome to Eventbrite</h1>
+    <p class="lead">La covid, pas le partage, pas les événements : la merde quoi !</p>
+  </div>
+</div>
+<div id="carouselExampleControls" class="carousel slide p-3 mb-2 mt-0 bg-info text-white" data-ride="carousel">
+  <h4>Les events à la une !</h4>
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+    <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+    <li data-target="#myCarousel" data-slide-to="4" class=""></li>
+  </ol>
+  <% i = @events.length - 1%>
+  <div class="m-auto carousel-inner" style="height: 300px; width: 600px;">
+    <div class="carousel-item active p-3 mb-2 bg-info text-white">
+      <h1><%= @events[i].title%></h1>
+      <p><%= @events[i].description%></p>
+      <%= link_to 'En savoir plus', @events[i], class: "btn btn-lg btn-primary" %>
+    </div>
+    <% i -= 1 %>
+    <% while i >= @events.length - 5 %>
+      <div class="carousel-item p-3 mb-2 bg-info text-white">
+        <h1><%= @events[i].title%></h1>
+        <p><%= @events[i].description%></p>
+        <%= link_to 'En savoir plus', @events[i], class: "btn btn-lg btn-primary" %>
+      </div>
+      <% i -= 1 %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
-<br>
 
-<%= link_to 'New Event', new_event_path %>
+<div>
+  <p id="notice"><%= notice %></p>
+
+  <h1>Events</h1>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Start date</th>
+        <th>Duration</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Location</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.start_date %></td>
+          <td><%= event.duration %></td>
+          <td><%= event.title %></td>
+          <td><%= event.description %></td>
+          <td><%= event.price %></td>
+          <td><%= event.location %></td>
+          <td><%= link_to 'Show', event %></td>
+          <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <%= link_to 'New Event', new_event_path %>
+  
+</div>
+
+<div class="container marketing">
+  <% @events.each do |event| %>
+
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2 mt-5">
+      <h2 class="featurette-heading"><%= event.title %><br><span class="text-muted"><%= event.start_date %></span></h2>
+      <p class="lead"><%= event.description %></p>
+      <%= link_to 'Plus à propos de cet événement', event, class: "btn btn-secondary" %>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1758f4127d5%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1758f4127d5%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1171875%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 500px; height: 500px;">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+  <% end %>
+
+</div>

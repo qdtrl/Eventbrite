@@ -4,12 +4,52 @@
     <title>Eventbrite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <%= link_to "Accueil", root_path, class:"navbar-brand" %>  
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+          </a>    
+          
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to "Mon profil", user_path, method: :delete, class:"dropdown-item btn btn-danger" %>
+            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item btn btn-danger" %>
+          </div>
+        </li>
+        <%else%>
+        <li class="nav-item dropdown">
+          <a class="nav-link btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+          </a>        
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to "Se connecter", new_user_session_path, class:"dropdown-item btn btn-primary" %>
+            <%= link_to "Créer un compte", new_user_registration_path, class:"dropdown-item btn btn-success" %>
+          </div>
+        </li>
+        <%end%>
+      </ul>      
+    </nav>
+  </header>
+
+  <body class="mx-auto">
     <%= yield %>
   </body>
+
+  <footer>
+    <nav class="navbar fixed-bottom navbar-light bg-light pt-4">
+      <p>© 2020 - QDT</p>
+      <p class="float-right"><a href="#">Back to top</a></p>
+    </nav>
+  </footer>
 </html>
