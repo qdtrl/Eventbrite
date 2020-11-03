@@ -23,7 +23,8 @@
           </a>    
           
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "Mon profil", user_path, method: :delete, class:"dropdown-item btn btn-danger" %>
+            <% print current_user %>
+            <%= link_to "Mon profil", user_path(current_user), class:"dropdown-item" %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item btn btn-danger" %>
           </div>
         </li>
