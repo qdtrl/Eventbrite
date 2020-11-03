@@ -9,8 +9,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create :welcome_send
-
-  private
   
   def welcome_send
     UserMailer.welcome_email(self).deliver_now

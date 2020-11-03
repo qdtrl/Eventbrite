@@ -2,13 +2,10 @@ class Attendance < ApplicationRecord
   belongs_to :users
   belongs_to :events
 
-  after_create :attendance_send
+  after_create :new_event_send
 
-  private
   
-  def attendance_send
-    event = self.event
-    event_admin = event.event_admin
-    UserMailer.attendance_email(event_admin, event).deliver_now
+  def new_event_send
+    UserMailer.new_event_send(self).deliver_now
   end
 end

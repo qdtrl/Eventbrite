@@ -1,0 +1,2 @@
+class AttendanceMailer < ApplicationMailer
+end
