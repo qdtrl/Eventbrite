@@ -1,13 +1,5 @@
-<body class="bg-light">
-  <div class="column mt-5 pt-5 text-center">
-    <h1>Création d'événement</h1>
-    <div>
-      <%= render 'form', event: @event %>
+<body class="text-center">
+  <%= render 'form', event: @event %>
   
-      <%= link_to 'Back', events_path %>
-    </div>
-    
-
-  </div>
-  
+  <%= link_to 'Back', events_path %>
 </body>

@@ -1,5 +1,6 @@
-<div class="container text-center bg-light rounded">
+<div class="container text-center pt-5 mt-5 bg-light rounded">
   <div class="col-md-6 order-md-1">
+    <h4 class="mb-3">Création d'événement</h4>
     <%= form_with(model: event, local: true) do |form| %>
       <% if event.errors.any? %>
         <div id="error_explanation">
