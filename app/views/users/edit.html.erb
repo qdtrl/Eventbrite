@@ -1,0 +1,9 @@
+<body class="bg-light">
+  <h1>Editing User</h1>
+
+  <%= render 'form', user: @user %>
+  
+  <%= link_to 'Show', @user %> |
+  <%= link_to 'Retour au profil', user_path(current_user) %>
+</body>
+

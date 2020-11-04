@@ -1,0 +1,39 @@
+
+<div class="container">
+  <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Informations</h4>
+    <%= form_with(model: user, local: true) do |form| %>
+      <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+
+        <div class="field col-md-6 mb-3">
+          <%= form.label :first_name %>
+          <%= form.text_field :first_name %>
+        </div>
+
+        <div class="field col-md-6 mb-3">
+          <%= form.label :last_name %>
+          <%= form.text_field :last_name %>
+        </div>
+      </div>
+
+      <div class="field mb-3">
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+</div>

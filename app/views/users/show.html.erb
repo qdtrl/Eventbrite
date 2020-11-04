@@ -1,24 +1,32 @@
-<h1><%= @user.first_name %></h1> 
-
-<p> T'es infos
-  <li> Ton prénom : <%= @user.first_name %> </li>
-  <li> Ton nom de famille : <%= @user.last_name %> </li>
-  <li> Ta description: <%= @user.description %> </li>
-  <li> Ton email : <%= @user.email %> </li>
-</p>
-<%= link_to 'New Event', new_event_path, class: "btn btn-success" %>
-<div class="card-columns">
-<% @events.each do |event|%>
-    <% if event.event_admin_id == @user.id %>
-  <div class="card" style="max-width: 18rem;">
-    <div class="card-body">
-    
-      <h5 class="card-title"> Title : <%= event.title %></h5> 
-      <p class="card-text"><small class="text-muted"> Author <%= event %></small></p>
-      <%= link_to "voir l'event", event_path(event.id), class:"btn btn-primary" %>
-      <p class="card-footer"><%= link_to 'Edit', edit_event_path(event), class: "btn" %> <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></p>
+<head>
+  <title><%= @user.first_name %> <%= @user.last_name %></title>
+</head>
+<body>
+  <div class="container mt-5 pt-4">
+    <div>
+      <h1><%= @user.first_name %></h1> 
+      <h3> Tes informations personnel :</h3>
+      <p>Ton prénom : <%= @user.first_name %><br>Ton nom de famille : <%= @user.last_name %><br>Ta description: <%= @user.description %></p>
+      <h3>Tes informations de compte</h3>
+      <p> Ton email : <%= @user.email %> <%= link_to 'Edit', edit_user_path(current_user), class: "btn" %>  </p>
+      <br><br>
+      <%= link_to 'New Event', new_event_path, class: "btn btn-success" %>
+    </div>
+    <h2>Mes événements organisés</h2>
+    <div class="card-columns">
+    <% @events.each do |event|%>
+        <% if event.event_admin_id == @user.id %>
+      <div class="card" style="max-width: 18rem;">
+        <div class="card-body">
+        
+          <h5 class="card-title"><%= event.title %></h5> 
+          <p class="card-text"><small class="text-muted"> dernière modification : <%= event.updated_at %></small></p>
+          <%= link_to "voir l'event", event_path(event.id), class:"btn btn-primary" %>
+          <p class="card-footer"><%= link_to 'Edit', edit_event_path(event), class: "btn" %> <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></p>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
     </div>
   </div>
-  <% end %>
-<% end %>
-</div>
+</body>

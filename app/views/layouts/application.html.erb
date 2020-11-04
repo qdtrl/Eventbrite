@@ -13,33 +13,38 @@
   </head>
 
   <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <%= link_to "Accueil", root_path, class:"navbar-brand" %>  
-      <ul class="navbar-nav">
-        <% if user_signed_in? %>
-        <li class="nav-item dropdown">
-          <a class="nav-link btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
-          </a>    
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <% print current_user %>
-            <%= link_to "Mon profil", user_path(current_user), class:"dropdown-item" %>
-            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item btn btn-danger" %>
-          </div>
-        </li>
-        <%else%>
-        <li class="nav-item dropdown">
-          <a class="nav-link btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
-          </a>        
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "Se connecter", new_user_session_path, class:"dropdown-item btn btn-primary" %>
-            <%= link_to "Créer un compte", new_user_registration_path, class:"dropdown-item btn btn-success" %>
-          </div>
-        </li>
-        <%end%>
-      </ul>      
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark justify-content-between">
+      <div>
+        <%= link_to "Accueil", root_path, class:"navbar-brand" %>  
+      </div>
+      <div class="row justify-content">
+        <%= link_to 'Créer un événement', new_event_path, class: "btn btn-success pt-2 active" %>
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="navbar-toggler-icon"></span>
+            </a>    
+            
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <% print current_user %>
+              <%= link_to "Mon profil", user_path(current_user), class:"dropdown-item" %>
+              <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item btn btn-danger" %>
+            </div>
+          </li>
+          <%else%>
+          <li class="nav-item dropdown">
+            <a class="nav-link btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="navbar-toggler-icon"></span>
+            </a>        
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "Se connecter", new_user_session_path, class:"dropdown-item btn btn-primary" %>
+              <%= link_to "Créer un compte", new_user_registration_path, class:"dropdown-item btn btn-success" %>
+            </div>
+          </li>
+          <%end%>
+        </ul> 
+      </div>     
     </nav>
   </header>
 
