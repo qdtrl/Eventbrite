@@ -1,11 +1,11 @@
 class Attendance < ApplicationRecord
-  belongs_to :users
-  belongs_to :events
+  belongs_to :user
+  belongs_to :event
 
-  after_create :new_event_send
+  after_create :new_event_subsciption_send
 
   
-  def new_event_send
-    UserMailer.new_event_send(self).deliver_now
+  def new_event_subsciption_send
+    UserMailer.new_event_subsciption_send(user, event).deliver_now
   end
 end

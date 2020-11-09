@@ -70,3 +70,5 @@ gem 'faker'
 gem 'table_print'
 
 gem 'dotenv-rails'
+
+gem 'stripe'

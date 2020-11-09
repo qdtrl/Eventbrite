@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-    before_action :only_see_own_page, only: [:show]
+  before_action :only_see_own_page, only: [:show, :edit, :update]
     
   def show 
-    @user = User.find(params[:id])
-    @events = Event.all
+    @user = set_user
+    @events = set_events
   end
 
   def edit
@@ -26,8 +26,7 @@ class UsersController < ApplicationController
   private
 
   def only_see_own_page
-      @user = User.find(params[:id])
-    
+      set_events     
       if current_user != @user
         redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
       end
@@ -35,5 +34,13 @@ class UsersController < ApplicationController
 
   def event_params
     params.require(:event).permit(:last_name, :first_name, :description)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def set_events
+    @events = Event.all
   end
 end
